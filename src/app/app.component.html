@@ -1,0 +1,81 @@
+<nav class="navbar navbar-dark bg-dark" style="height: 8vh;">
+  <div class="container-fluid px-4 mx-1">
+    <span class="navbar-brand mb-0 h1">GraphViz</span>
+  </div>
+</nav>
+
+<div class="container-fluid" style="height: 92vh;">
+  <div class="row" style="height: 100%;">
+    <div class="col-md-10 p-0">
+      <div class="row d-flex justify-content-center align-items-center" style="height:100%;width: 100%;">
+        <div class="col-12 mt-4" style="height: 5%;width: 50%;">
+          <form [formGroup]="formGroup" (ngSubmit)="onFormSubmit()">
+            <div class="row mb-3 d-flex justify-content-center align-items-center">
+              <div class="col-9 p-0 m-0">
+                <mat-form-field style="width: 100%;">
+                  <mat-label>Start Typing</mat-label>
+                  <input type="text" matInput formControlName="query" [matAutocomplete]="auto">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                      {{ option }}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div>
+              <div class="col-2 p-0 m-0">
+                <mat-form-field id="select" style="width: 100%;">
+                  <mat-select [(value)]="charttype">
+                    <mat-option value="bar">Bar</mat-option>
+                    <mat-option value="line">Line</mat-option>
+                    <mat-option value="pie">Pie</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+          </form>
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+          <div style="height: 65%;width: 100%;">
+            <ng-container *ngIf="visualType === 'Graph'; else table">
+              <app-pychart [metadata]="graphData" [charttype]="charttype"
+                class="d-flex justify-content-center"></app-pychart>
+            </ng-container>
+          </div>
+          <ng-template #table>
+            <app-table [metadata]="tableData" class="d-flex justify-content-center"></app-table>
+          </ng-template>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-md-2 p-0 border-start" style="height: 100%;">
+      <div class="row mx-2 mt-3 mb-2 pt-4 pb-1 d-flex justify-content-between align-items-center form-label" id="file"
+        style="cursor: pointer;" (click)="fileInput.click()">
+        <input hidden (change)="onFileSelected($event)" #fileInput type="file">
+        <span class="file-name col-9">Choose a file</span>
+        <span class="material-icons icon-display col-3">attach_file</span>
+      </div>
+      <div class="row border-top mx-2 form-label">
+        <div class="col-10 pt-2 px-0">
+          <mat-list role="list" class="list-file">
+            <mat-list-item *ngFor="let file of files" role="listitem" (click)="setFile(file)"
+              class="p-2">
+              <span class="d-inline-flex align-items-start">
+                <span [style.color]="fileStatus==file ? selected : default" class="material-icons icon-display">
+                  description
+                </span>
+                <span class="file-name form-label px-1" style="cursor: pointer;"
+                  [style.color]="fileStatus==file ? selected : default">{{file}}</span>
+              </span>
+            </mat-list-item>
+          </mat-list>
+        </div>
+        <div class="col-2 pt-2 px-0 d-flex align-items-start">
+          <span class="material-icons icon-display pt-3" style="cursor: pointer;" (click)="getfiles()">refresh</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
