@@ -1,27 +1,39 @@
-# GraphvizFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
+# Graphviz: SQL Database Visualization Tool
 
-## Development server
+This is the frontend component of the Graphviz project. 
+To enable backend functionality, a separate service needs to be initiated. GitHub repository for the backend - [graphviz-backend](https://github.com/Sheel-ui/graphviz-backend)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Installation
 
-## Code scaffolding
+1. Clone this repository:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+   ```bash
+   $ git clone https://github.com/Sheel-ui/graphviz-frontend.git
 
-## Build
+2. Navigate to the project directory:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+   ```bash
+   $ cd graphviz-frontend
+   ```
 
-## Running unit tests
+3. Install dependencies:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+   ```bash
+   $ npm install
+   ```
 
-## Running end-to-end tests
+## Usage
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+To start the development server, run:
 
-## Further help
+```bash
+$ ng serve
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This will start the server at `http://localhost:4200/` by default.
+
+# Demo
+![Alt Text](./demo/demo1.gif)
+![Alt Text](./demo/demo2.gif)
+
